@@ -22,6 +22,8 @@ services:
       - POSTGRES_USER=testuser
       - POSTGRES_PASSWORD=testuser
       - POSTGRES_DB=db_for_django_cache_test
+  redis:
+    image: "redis:alpine"
 
 volumes:
   postgres_data:

@@ -16,18 +16,6 @@ services:
       - env/.env.prod
     depends_on:
       - db
-  bot:
-    image: bot
-    build:
-      context: ./app
-      dockerfile: Dockerfile.prod
-    command: python manage.py bot
-    ports:
-      - 8443:8443
-    env_file:
-      - env/.env.dev
-    depends_on:
-      - db
   db:
     image: postgres:12.5-alpine
     volumes:
@@ -45,7 +33,8 @@ services:
       - 80:80
     depends_on:
       - web
-
+  redis:
+    image: "redis:alpine"
 
 volumes:
   postgres_data:
