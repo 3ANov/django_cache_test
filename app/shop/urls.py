@@ -3,7 +3,8 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from main import settings
+from shop.views import IndexTemplateView
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="shop/index.html")),
+    path('', IndexTemplateView.as_view(), name='home'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
