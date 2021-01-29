@@ -1,11 +1,10 @@
 from django.core.cache import cache
 from django.db.models.signals import post_save
-
-from site_settings.models import SiteSettings
-
-
-def invalidate_site_settings_cache(sender, instance, **kwargs):
-    cache.clear()
+from django.dispatch import receiver
 
 
-post_save.connect(invalidate_site_settings_cache, sender=SiteSettings)
+@receiver(post_save, sender='site_settings.SiteSettings')
+def invalidate_site_settings_cache(sender, instance, created, **kwargs):
+    print(cache.keys('*'))
+    cache.delete('index_page')
+
