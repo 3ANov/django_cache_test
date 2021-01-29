@@ -5,6 +5,4 @@ from django.dispatch import receiver
 
 @receiver(post_save, sender='site_settings.SiteSettings')
 def invalidate_site_settings_cache(sender, instance, created, **kwargs):
-    print(cache.keys('*'))
-    cache.delete('index_page')
-
+    cache.clear()

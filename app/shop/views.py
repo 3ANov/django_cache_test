@@ -9,7 +9,7 @@ from site_settings.models import SiteSettings, SocialLink
 from django.core.cache import cache
 
 
-@method_decorator(cache_page(60 * 5, key_prefix="index_page"), name='dispatch')
+@method_decorator(cache_page(60, key_prefix="index_page"), name='dispatch')
 class IndexTemplateView(TemplateView):
     template_name = 'shop/index.html'
 
