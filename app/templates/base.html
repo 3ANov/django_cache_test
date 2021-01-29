@@ -2,7 +2,6 @@
 <!DOCTYPE HTML>
 <html class="h-100">
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ site_seo_description }}">
     <script src="https://kit.fontawesome.com/05850b7323.js" crossorigin="anonymous"></script>
@@ -40,9 +39,9 @@
             </div>
             <div class="col">
             <div>Social-Link:</div>
-	     		<span class="social-icons">
+	     		<span>
             {% for sociallink in site_social_link.all %}
-                <a href="{{sociallink.link}}"><i class="{{sociallink.icon}}"></i></a>
+                <a href="{{sociallink.link}}"><i class="{{sociallink.icon}} text-dark text-decoration-none" style="font-size: 1.4em"></i></a>
             {% endfor %}
 	     		</span>
             </div>
