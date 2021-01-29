@@ -13,6 +13,3 @@ from django.core.cache import cache
 class IndexTemplateView(TemplateView):
     template_name = 'shop/index.html'
 
-
-def show_cache_view(request):
-    return HttpResponse(cache.get('SiteSettings'))
