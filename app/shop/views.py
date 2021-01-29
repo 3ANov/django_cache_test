@@ -1,25 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-
-# Create your views here.
+from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.views.generic.base import ContextMixin
-
+from django.http import HttpResponse
 from site_settings.models import SiteSettings, SocialLink
+from django.core.cache import cache
 
 
-class SiteContextMixin(ContextMixin):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        site_settings = get_object_or_404(SiteSettings, pk=1)
-        context['site_title'] = site_settings.title
-        context['site_seo_description'] = site_settings.seo_description
-        context['site_contact_email'] = site_settings.contact_email
-        context['site_logo_image'] = site_settings.logo_image
-        context['site_address'] = site_settings.address
-        context['site_telephone_number'] = site_settings.telephone_number
-        context['site_social_link'] = SocialLink.objects.filter(settings_id=site_settings.id)
-        return context
-
-
-class IndexTemplateView(TemplateView, SiteContextMixin):
+@method_decorator(cache_page(60 * 5, key_prefix="index_page"), name='dispatch')
+class IndexTemplateView(TemplateView):
     template_name = 'shop/index.html'
+
+
+def show_cache_view(request):
+    return HttpResponse(cache.get('SiteSettings'))

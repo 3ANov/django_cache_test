@@ -3,7 +3,7 @@
 <html class="h-100">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ site_seo_description }}">
+    <meta name="description" content="{{ site_settings.seo_description }}">
     <script src="https://kit.fontawesome.com/05850b7323.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <!-- CSS -->
@@ -16,9 +16,9 @@
 <body class="d-flex flex-column h-100">
 <header class="row align-items-center mx-0 pb-2 shadow">
     <div class="col-3">
-        <img src="{{ site_logo_image.url }}" class="img-fluid">
+        <img src="{{ site_settings.logo_image.url }}" class="img-fluid">
     </div>
-    <div class="col text-uppercase text-center"><span class="display-4 ">{{ site_title }}</span></div>
+    <div class="col text-uppercase text-center"><span class="display-4 ">{{ site_settings.title }}</span></div>
 </header>
 
 <main role="main" class="flex-shrink-0">
@@ -34,8 +34,8 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
-                <div> Адрес: {{ site_address }}</div>
-                <div>Телефон: {{ site_telephone_number }}</div>
+                <div> Адрес: {{ site_settings.address }}</div>
+                <div>Телефон: {{ site_settings.telephone_number }}</div>
             </div>
             <div class="col">
             <div>Social-Link:</div>
