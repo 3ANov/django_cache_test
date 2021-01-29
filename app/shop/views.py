@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic.base import ContextMixin
 
-from site_settings.models import SiteSettings
+from site_settings.models import SiteSettings, SocialLink
 
 
 class SiteContextMixin(ContextMixin):
@@ -17,6 +17,7 @@ class SiteContextMixin(ContextMixin):
         context['site_logo_image'] = site_settings.logo_image
         context['site_address'] = site_settings.address
         context['site_telephone_number'] = site_settings.telephone_number
+        context['site_social_link'] = SocialLink.objects.filter(settings_id=site_settings.id)
         return context
 
 

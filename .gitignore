@@ -8,3 +8,4 @@ env/.env.prod
 
 #Directories
 mediafiles/
+/app/staticfiles/
