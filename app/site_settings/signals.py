@@ -11,8 +11,7 @@ def clear_site_settings_cache():
 
 @receiver(post_save, sender=SiteSettings)
 def invalidate_site_settings_cache(sender, **kwargs):
-    if kwargs['created']:
-        clear_site_settings_cache()
+    clear_site_settings_cache()
 
 
 def clear_social_links_cache():
@@ -21,5 +20,4 @@ def clear_social_links_cache():
 
 @receiver(post_save, sender=SocialLink)
 def invalidate_social_links_cache(sender, **kwargs):
-    if kwargs['created']:
-        clear_social_links_cache()
+    clear_social_links_cache()
