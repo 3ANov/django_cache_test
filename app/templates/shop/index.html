@@ -3,7 +3,11 @@
 {% block content %}
     <div class="row align-items-center">
         <div class="col">
-            <h1 class="text-center">ААААААА</h1>
+            <span>
+            {% for sociallink in new_social_list %}
+                <a href="{{sociallink.link}}"><i class="{{sociallink.icon}} text-dark text-decoration-none" style="font-size: 1.4em"></i></a>
+            {% endfor %}
+	     		</span>
         </div>
     </div>
 {% endblock %}

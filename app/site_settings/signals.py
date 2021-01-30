@@ -1,8 +1,25 @@
 from django.core.cache import cache
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
+from site_settings.models import SiteSettings, SocialLink
 
-@receiver(post_save, sender='site_settings.SiteSettings')
-def invalidate_site_settings_cache(sender, instance, created, **kwargs):
-    cache.clear()
+
+def clear_site_settings_cache():
+    cache.delete('site_settings')
+
+
+@receiver(post_save, sender=SiteSettings)
+def invalidate_site_settings_cache(sender, **kwargs):
+    if kwargs['created']:
+        clear_site_settings_cache()
+
+
+def clear_social_links_cache():
+    cache.delete('social_links')
+
+
+@receiver(post_save, sender=SocialLink)
+def invalidate_social_links_cache(sender, **kwargs):
+    if kwargs['created']:
+        clear_social_links_cache()

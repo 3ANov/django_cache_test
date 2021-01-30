@@ -1,9 +1,10 @@
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+
+from site_settings.models import SocialLink
 
 
-@method_decorator(cache_page(5*60, key_prefix="index_page"), name='dispatch')
-class IndexTemplateView(TemplateView):
+class IndexView(ListView):
     template_name = 'shop/index.html'
+    queryset = SocialLink.objects.all().order_by('?')
+    context_object_name = 'new_social_list'
 
