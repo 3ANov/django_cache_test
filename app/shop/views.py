@@ -7,4 +7,3 @@ class IndexView(ListView):
     template_name = 'shop/index.html'
     queryset = SocialLink.objects.all().order_by('?')
     context_object_name = 'new_social_list'
-
